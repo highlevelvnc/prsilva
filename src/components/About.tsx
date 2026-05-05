@@ -7,8 +7,7 @@ import { staggerReveal, observeReveal, refreshTriggers } from "@/lib/scrollRevea
 import { ArrowRightIcon, CheckIcon } from "@/components/ui/Icons";
 import { WHATSAPP_URL } from "@/lib/constants";
 
-const ABOUT_IMAGE =
-  "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1600&q=80";
+const ABOUT_IMAGE = "/about/obra-em-curso.jpg";
 
 const VALUES = [
   "Atenção ao detalhe em cada acabamento",

@@ -7,8 +7,7 @@ import { WHATSAPP_URL } from "@/lib/constants";
 import { gsap } from "@/lib/gsap";
 import { staggerReveal, refreshTriggers } from "@/lib/scrollReveal";
 
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=2400&q=80";
+const HERO_IMAGE = "/hero/interior-renovado.jpg";
 
 const HIGHLIGHTS = ["Orçamento sem compromisso", "Equipa qualificada", "Acabamento garantido"];
 

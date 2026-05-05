@@ -18,53 +18,51 @@ type Item = {
 
 const ITEMS: Item[] = [
   {
-    src: "https://images.unsplash.com/photo-1618221118493-9cfa1a1c00da?auto=format&fit=crop&w=1600&q=80",
-    alt: "Sala renovada com paredes brancas e iluminação suave",
+    src: "/portfolio/01-quarto-madeira.jpg",
+    alt: "Quarto renovado com paredes brancas, chão de madeira e ar condicionado",
     tag: "Pintura interior",
-    title: "Sala em apartamento — Lisboa",
+    title: "Quarto — apartamento renovado",
     span: "tall",
   },
   {
-    src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
-    alt: "Cozinha contemporânea após remodelação",
-    tag: "Remodelação",
-    title: "Cozinha minimalista",
-    span: "wide",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
-    alt: "Quarto pintado em tons neutros",
-    tag: "Pintura interior",
-    title: "Quarto principal",
-    span: "square",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=80",
-    alt: "Hall e corredor com acabamento profissional",
-    tag: "Acabamentos",
-    title: "Hall de entrada",
-    span: "square",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
-    alt: "Espaço comercial renovado",
-    tag: "Espaços comerciais",
-    title: "Loja em centro urbano",
-    span: "wide",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1618219740975-d40978bb7378?auto=format&fit=crop&w=1600&q=80",
-    alt: "Fachada exterior pintada",
+    src: "/portfolio/04-portao-madeira.jpg",
+    alt: "Portão de garagem em madeira após envernizamento",
     tag: "Pintura exterior",
-    title: "Fachada moradia",
+    title: "Portão envernizado",
+    span: "wide",
+  },
+  {
+    src: "/portfolio/03-marquise.jpg",
+    alt: "Marquise com tijoleira em mosaico restaurada",
+    tag: "Remodelação",
+    title: "Marquise restaurada",
+    span: "square",
+  },
+  {
+    src: "/portfolio/02-quarto-armario.jpg",
+    alt: "Quarto com armário embutido pintado de branco",
+    tag: "Pintura interior",
+    title: "Armário embutido",
+    span: "square",
+  },
+  {
+    src: "/portfolio/05-janela-exterior.jpg",
+    alt: "Janela exterior com moldura em madeira envernizada",
+    tag: "Carpintaria & exterior",
+    title: "Janela em moradia",
     span: "tall",
+  },
+  {
+    src: "/portfolio/06-janela-pinheiros.jpg",
+    alt: "Janela exterior com vista para pinhal",
+    tag: "Pintura exterior",
+    title: "Janela em moradia",
+    span: "square",
   },
 ];
 
-const BEFORE_IMG =
-  "https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?auto=format&fit=crop&w=1600&q=80";
-const AFTER_IMG =
-  "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=80";
+const BEFORE_IMG = "/portfolio/before-teto-fissuras.jpg";
+const AFTER_IMG = "/portfolio/after-teto-renovado.jpg";
 
 const SPAN: Record<Item["span"], string> = {
   tall: "md:row-span-2",
