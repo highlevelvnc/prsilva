@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
-import { staggerReveal, refreshTriggers } from "@/lib/scrollReveal";
+import { staggerReveal, refreshTriggers, isCoarseScreen } from "@/lib/scrollReveal";
 import { ArrowRightIcon, WhatsAppIcon } from "@/components/ui/Icons";
 import { WHATSAPP_URL } from "@/lib/constants";
 
@@ -12,6 +12,8 @@ export function CTASection() {
   useEffect(() => {
     const c1 = staggerReveal(sectionRef.current, "[data-reveal]", 0.1);
     const ctx = gsap.context(() => {
+      if (isCoarseScreen()) return; // skip infinite shimmer on mobile
+
       gsap.to(".cta-shimmer-1", {
         x: "+=120",
         y: "-=60",
@@ -46,11 +48,11 @@ export function CTASection() {
       <div aria-hidden className="absolute inset-0 -z-10 bg-navy-radial" />
       <div
         aria-hidden
-        className="cta-shimmer-1 pointer-events-none absolute -top-32 left-1/4 h-[28rem] w-[28rem] rounded-full bg-royal-500/30 blur-[120px] will-change-transform"
+        className="cta-shimmer-1 pointer-events-none absolute -top-32 left-1/4 h-[20rem] w-[20rem] rounded-full bg-royal-500/30 blur-3xl lg:h-[28rem] lg:w-[28rem] lg:blur-[120px] lg:will-change-transform"
       />
       <div
         aria-hidden
-        className="cta-shimmer-2 pointer-events-none absolute -bottom-32 right-1/4 h-[26rem] w-[26rem] rounded-full bg-royal-300/20 blur-[120px] will-change-transform"
+        className="cta-shimmer-2 pointer-events-none absolute -bottom-32 right-1/4 h-[18rem] w-[18rem] rounded-full bg-royal-300/20 blur-3xl lg:h-[26rem] lg:w-[26rem] lg:blur-[120px] lg:will-change-transform"
       />
 
       <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />

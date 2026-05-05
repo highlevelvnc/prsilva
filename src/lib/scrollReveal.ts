@@ -99,3 +99,16 @@ export function refreshTriggers() {
     requestAnimationFrame(() => ScrollTrigger.refresh());
   }
 }
+
+/**
+ * `true` for small/coarse screens or when the user prefers reduced motion.
+ * Use to skip expensive scroll-driven effects (parallax, scrub, infinite loops)
+ * that cause jank on mobile devices.
+ */
+export function isCoarseScreen(): boolean {
+  if (typeof window === "undefined") return false;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const small = window.matchMedia("(max-width: 1024px)").matches;
+  const coarse = window.matchMedia("(pointer: coarse)").matches;
+  return reduce || small || coarse;
+}

@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { ArrowRightIcon, CheckIcon } from "@/components/ui/Icons";
 import { WHATSAPP_URL } from "@/lib/constants";
 import { gsap } from "@/lib/gsap";
-import { staggerReveal, refreshTriggers } from "@/lib/scrollReveal";
+import { staggerReveal, refreshTriggers, isCoarseScreen } from "@/lib/scrollReveal";
 
 const HERO_IMAGE = "/hero/interior-renovado.jpg";
 
@@ -21,8 +21,15 @@ export function Hero() {
 
   useEffect(() => {
     const c1 = staggerReveal(sectionRef.current, "[data-reveal]", 0.08);
+    const lite = isCoarseScreen();
 
     const ctx = gsap.context(() => {
+      if (lineRef.current) {
+        gsap.fromTo(lineRef.current, { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "expo.out", delay: 0.6 });
+      }
+
+      if (lite) return; // skip parallax + blob scrub on mobile/reduced-motion
+
       if (bgRef.current) {
         gsap.to(bgRef.current, {
           yPercent: 18,
@@ -61,10 +68,6 @@ export function Hero() {
         ease: "none",
         scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom top", scrub: 0.9 },
       });
-
-      if (lineRef.current) {
-        gsap.fromTo(lineRef.current, { scaleX: 0 }, { scaleX: 1, duration: 1.4, ease: "expo.out", delay: 0.6 });
-      }
     }, sectionRef);
 
     refreshTriggers();
@@ -80,7 +83,7 @@ export function Hero() {
       ref={sectionRef}
       className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-navy-900 pt-28 text-white"
     >
-      <div ref={bgRef} className="absolute inset-0 -z-10 will-change-transform">
+      <div ref={bgRef} className="absolute inset-0 -z-10 lg:will-change-transform">
         <Image
           src={HERO_IMAGE}
           alt=""
@@ -98,12 +101,12 @@ export function Hero() {
       <div
         ref={blob1Ref}
         aria-hidden
-        className="pointer-events-none absolute -right-32 -top-24 h-[28rem] w-[28rem] rounded-full bg-royal-500/30 blur-[120px] will-change-transform"
+        className="pointer-events-none absolute -right-32 -top-24 h-[20rem] w-[20rem] rounded-full bg-royal-500/30 blur-3xl lg:h-[28rem] lg:w-[28rem] lg:blur-[120px] lg:will-change-transform"
       />
       <div
         ref={blob2Ref}
         aria-hidden
-        className="pointer-events-none absolute -bottom-20 -left-24 h-[24rem] w-[24rem] rounded-full bg-royal-300/20 blur-[120px] will-change-transform"
+        className="pointer-events-none absolute -bottom-20 -left-24 h-[18rem] w-[18rem] rounded-full bg-royal-300/20 blur-3xl lg:h-[24rem] lg:w-[24rem] lg:blur-[120px] lg:will-change-transform"
       />
 
       <svg
@@ -182,7 +185,7 @@ export function Hero() {
           <div className="relative ml-auto w-full max-w-md">
             <div
               data-reveal="up"
-              className="hero-stat relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md"
+              className="hero-stat relative overflow-hidden rounded-2xl border border-white/10 bg-navy-800/60 p-6 lg:bg-white/5 lg:backdrop-blur-md"
             >
               <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-royal-400/30 blur-3xl" aria-hidden />
               <p className="text-xs font-semibold uppercase tracking-label-wide text-royal-200">Em destaque</p>
@@ -208,7 +211,7 @@ export function Hero() {
               </dl>
             </div>
 
-            <div aria-hidden className="absolute -bottom-6 -left-6 h-24 w-24 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md" />
+            <div aria-hidden className="absolute -bottom-6 -left-6 h-24 w-24 rounded-2xl border border-white/10 bg-navy-800/60 lg:bg-white/5 lg:backdrop-blur-md" />
             <div aria-hidden className="absolute -right-4 top-10 h-16 w-16 rounded-full bg-royal-400/20 blur-2xl" />
           </div>
         </div>

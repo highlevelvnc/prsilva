@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
-import { observeReveal, staggerReveal, refreshTriggers } from "@/lib/scrollReveal";
+import { observeReveal, staggerReveal, refreshTriggers, isCoarseScreen } from "@/lib/scrollReveal";
 import { ArrowRightIcon } from "@/components/ui/Icons";
 import { WHATSAPP_URL } from "@/lib/constants";
 import { BeforeAfter } from "@/components/BeforeAfter";
@@ -81,22 +81,24 @@ export function Portfolio() {
     const c3 = observeReveal(baWrapRef.current, "[data-reveal]");
 
     const ctx = gsap.context(() => {
-      sectionRef.current?.querySelectorAll<HTMLElement>(".pf-img").forEach((el) => {
-        gsap.fromTo(
-          el,
-          { yPercent: -8 },
-          {
-            yPercent: 8,
-            ease: "none",
-            scrollTrigger: {
-              trigger: el.parentElement!,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 0.6,
-            },
-          }
-        );
-      });
+      if (!isCoarseScreen()) {
+        sectionRef.current?.querySelectorAll<HTMLElement>(".pf-img").forEach((el) => {
+          gsap.fromTo(
+            el,
+            { yPercent: -8 },
+            {
+              yPercent: 8,
+              ease: "none",
+              scrollTrigger: {
+                trigger: el.parentElement!,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.6,
+              },
+            }
+          );
+        });
+      }
     }, sectionRef);
     refreshTriggers();
     return () => {
@@ -135,7 +137,7 @@ export function Portfolio() {
               className={`relative ${SPAN[it.span]}`}
             >
               <div className="pf-card group relative h-full w-full overflow-hidden rounded-2xl bg-navy-900">
-                <div className="absolute inset-0 will-change-transform">
+                <div className="absolute inset-0 lg:will-change-transform">
                   <Image
                     src={it.src}
                     alt={it.alt}

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
-import { staggerReveal, observeReveal, refreshTriggers } from "@/lib/scrollReveal";
+import { staggerReveal, observeReveal, refreshTriggers, isCoarseScreen } from "@/lib/scrollReveal";
 import { ArrowRightIcon, CheckIcon } from "@/components/ui/Icons";
 import { WHATSAPP_URL } from "@/lib/constants";
 
@@ -24,7 +24,7 @@ export function About() {
     const c2 = observeReveal(sectionRef.current, ".ab-img-wrap[data-reveal]");
 
     const ctx = gsap.context(() => {
-      if (imgRef.current) {
+      if (imgRef.current && !isCoarseScreen()) {
         gsap.fromTo(
           imgRef.current,
           { yPercent: -6 },
@@ -93,7 +93,7 @@ export function About() {
 
         <div data-reveal="right" className="ab-img-wrap relative lg:col-span-6">
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-navy-900 shadow-card-hover">
-            <div ref={imgRef} className="absolute inset-0 will-change-transform">
+            <div ref={imgRef} className="absolute inset-0 lg:will-change-transform">
               <Image
                 src={ABOUT_IMAGE}
                 alt="Pintor profissional a trabalhar"
